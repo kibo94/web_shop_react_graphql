@@ -3,7 +3,7 @@ const express = require("express")
 const path = require('path')
 let env = require("dotenv");
 var app = express();
-let  http = require("http")
+let http = require("http")
 let cors = require("cors")
 
 app.use(cors())
@@ -99,7 +99,6 @@ street:String!
 
 }
 
-
 input History {
   name:String
   price:String
@@ -110,65 +109,58 @@ input History {
   img_path:String
   quantity:Int
 }
-
-
 `
-
 let orders = [
+]
+let users = [
+  {
+    id: "1",
+    firstName: "Bojan",
+    lastName: "Bogdanovic",
+    password: "1234",
+    email: "bojanb106@gmail.com",
+    street: "ul 422 br3",
+    history: []
+  },
+
+  {
+    id: "2",
+    firstName: "Goran",
+    lastName: "Petrovic",
+    password: "12345",
+    email: "gogi10@gmail.com",
+    street: "Nemaajnina 59",
+    history: []
+  }
 
 
 ]
-let users=[
-{
-id:"1",
-firstName:"Bojan",
-lastName:"Bogdanovic",
-password:"1234",
-email:"bojanb106@gmail.com",
-street:"ul 422 br3",
-history:[]
-},
-
-{
-  id:"2",
-  firstName:"Goran",
-  lastName:"Petrovic",
-  password:"12345",
-  email:"gogi10@gmail.com",
-  street:"Nemaajnina 59",
-  history:[]
-}
-
-
-]
-const allUsers = function() {
+const allUsers = function () {
   return users;
 }
-const singleUser=(parent,args)=>{
-  const user=users.find(user=>user.email===args.email)  
-  if(!user){
-      return null
+const singleUser = (parent, args) => {
+  const user = users.find(user => user.email === args.email)
+  if (!user) {
+    return null
   }
 
   return user;
 
 }
-const addOrderToOrders = function (parent,args,ctx,info)  {
+const addOrderToOrders = function (parent, args, ctx, info) {
 
   const order = {
-    id:args.id,
-    products:args.products,
-    info:{
-      firstName:args.info.firstName,
-      lastName:args.info.lastName,
-      phone:args.info.phone,
-      address:args.info.address,
-      email:args.info.email,
+    id: args.id,
+    products: args.products,
+    info: {
+      firstName: args.info.firstName,
+      lastName: args.info.lastName,
+      phone: args.info.phone,
+      address: args.info.address,
+      email: args.info.email,
     },
-    total:args.total
- }
- console.log(order)
-
+    total: args.total
+  }
   orders.push(order)
   return orders;
 
@@ -177,26 +169,26 @@ const getOrders = () => {
   return orders;
 }
 
-const  addToHistory=function(parent,args,ctx,info){
-  const user=users.find(user=>user.id===args.id)  
-  user.history=[...user.history,...args.history]
+const addToHistory = function (parent, args, ctx, info) {
+  const user = users.find(user => user.id === args.id)
+  user.history = [...user.history, ...args.history]
   return user;
 
 }
-var createUser = function(parent,args,ctx,info) {
+var createUser = function (parent, args, ctx, info) {
   const userExists = users.some((person) => person.email === args.user.email)
-  if(userExists){
-        return [];
+  if (userExists) {
+    return [];
   }
   const userr = {
-     firstName:args.user.firstName,
-     lastName:args.user.lastName,
-     password:args.user.password,
-     id:args.user.id,
-     street:args.user.street,
-     email:args.user.email,
-     history:[]
-  //     ...args.post
+    firstName: args.user.firstName,
+    lastName: args.user.lastName,
+    password: args.user.password,
+    id: args.user.id,
+    street: args.user.street,
+    email: args.user.email,
+    history: []
+    //     ...args.post
   }
   users.push(userr)
   return userr;
@@ -204,19 +196,16 @@ var createUser = function(parent,args,ctx,info) {
 
 // Provide resolver functions for your schema fields
 const resolvers = {
-  
-  
   Query: {
-    orders:getOrders,
-    allUsers:allUsers,
-  
-  },
-  Mutation:{
-    createUser:createUser,
-    addToHistory:addToHistory,
-    singleUser:singleUser,
-    addOrderToOrders:addOrderToOrders
+    orders: getOrders,
+    allUsers: allUsers,
 
+  },
+  Mutation: {
+    createUser: createUser,
+    addToHistory: addToHistory,
+    singleUser: singleUser,
+    addOrderToOrders: addOrderToOrders
   },
 
 };
@@ -224,10 +213,9 @@ const resolvers = {
 
 // const server = http.createServer(app)
 
-
 const server = new ApolloServer({
   typeDefs,
-  resolvers, 
+  resolvers,
 });
 server.applyMiddleware({
   path: '/graphql', // you should change this to whatever you want
@@ -247,7 +235,7 @@ if (isProduction) {
       path.resolve(__dirname, "..", "client", "build", "index.html")
     ); // index is in /server/src so 2 folders up
   });
-app.listen(process.env.PORT || port);
+  app.listen(process.env.PORT || port);
 
 } else {
   console.log(process.env.PORT)
