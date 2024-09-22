@@ -226,6 +226,10 @@ server.applyMiddleware({
 
   path: '/graphql', // you should change this to whatever you want
   app,
+  cors: {
+    origin: '*', // Replace with your frontend's URL in production
+    credentials: true
+  }
 
 });
 
