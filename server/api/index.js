@@ -215,17 +215,15 @@ const resolvers = {
 };
 // Required: Export the GraphQL.js schema object as "schema"
 
-// const server = http.createServer(app)
-
 // Initialize the Apollo server
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
-  introspection: true,
-  playground: true,
+  introspection: true,  // Enable introspection
+  playground: true,     // Enable GraphQL Playground
 });
 
-// Create a handler for the GraphQL API
+// Create a handler for the API
 const handler = apolloServer.createHandler({
   path: '/api/graphql',
 });
@@ -235,16 +233,17 @@ module.exports = async (req, res) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     res.status(200).end();
     return;
   }
 
+  // Handle GraphQL requests
   return handler(req, res);
 };
 
-// Disable body parsing, because Apollo Server handles that
+// Disable body parsing for Apollo Server
 export const config = {
   api: {
     bodyParser: false,
