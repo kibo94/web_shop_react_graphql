@@ -1,17 +1,15 @@
-const { ApolloServer, gql } = require('apollo-server-micro');
+const { ApolloServer, gql } = require('apollo-server-express');
+const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core')
 const express = require("express")
 const path = require('path')
 let env = require("dotenv");
 var app = express();
 let http = require("http")
 let cors = require("cors")
-
+app.use(express.json());
 app.use(cors())
-app.use(cors({
-  origin: '*', // or restrict to specific domains like 'http://localhost:3000'
-  methods: ['GET', 'POST']
-}));
 env.config();
+
 let port = 3000
 // var firebase = require('firebase');
 const typeDefs = `
@@ -217,11 +215,11 @@ const resolvers = {
 
 // const server = http.createServer(app)
 const httpServer = http.createServer(app)
-const startApolloServer = async (app, httpServer) => {
+const startApolloServer = async (app, httpSrv) => {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer: httpSrv })],
   });
 
   await server.start();

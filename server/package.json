@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "apollo-server": "^2.19.0",
+    "apollo-server-core": "^2.19.0",
     "apollo-server-express": "^2.19.0",
     "apollo-server-micro": "^3.13.0",
     "cors": "^2.8.5",
