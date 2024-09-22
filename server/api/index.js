@@ -229,8 +229,8 @@ const resolvers2 = {
 const httpServer = http.createServer(app)
 const startApolloServer = async (app, httpSrv) => {
   const server = new ApolloServer({
-    typeDefs2,
-    resolvers2,
+    typeDefs,
+    resolvers,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer: httpSrv })],
   });
 
