@@ -211,14 +211,26 @@ const resolvers = {
   },
 
 };
+
+const typeDefs2 = gql`
+  type Query {
+    hello: String
+  }
+`;
+
+const resolvers2 = {
+  Query: {
+    hello: () => "world",
+  },
+};
 // Required: Export the GraphQL.js schema object as "schema"
 
 // const server = http.createServer(app)
 const httpServer = http.createServer(app)
 const startApolloServer = async (app, httpSrv) => {
   const server = new ApolloServer({
-    typeDefs,
-    resolvers,
+    typeDefs2,
+    resolvers2,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer: httpSrv })],
   });
 
