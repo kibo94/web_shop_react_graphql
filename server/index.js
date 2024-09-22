@@ -227,7 +227,7 @@ server.applyMiddleware({
   path: '/graphql', // you should change this to whatever you want
   app,
   cors: {
-    origin: '*', // Replace with your frontend's URL in production
+    origin: 'https://web-shop-react-graphql-client-elyx1wk6k.vercel.app', // Replace with your frontend's URL in production
     credentials: true
   }
 
