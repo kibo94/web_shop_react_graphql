@@ -8,90 +8,6 @@ const initialState = {
     auth: false,
     orderss: [],
     products: [
-        {
-            name: "Lenovo 3360 S",
-            price: "30000",
-            matchName: "Lenovo3360S",
-            id: "1",
-            type: "home",
-            route: "televizori",
-            img_path: "lap.jpg",
-            quantity: 0
-            ,
-        },
-        {
-            name: "Iphone 6s",
-            price: "60000",
-            type: "home",
-            route: "mobilni",
-            img_path: "mobile1.jpg",
-            quantity: 0,
-            id: "2",
-
-        },
-        {
-            name: "DELL 360 A",
-            price: "50000",
-            id: "3",
-            type: "lap",
-            route: "laptopovi",
-            img_path: "lap1.jpg",
-            quantity: 0,
-
-
-        },
-
-        {
-            name: "Toshiba 3333",
-            price: "30000",
-            id: "4",
-            type: "lap",
-            route: "laptopovi",
-            img_path: "lap2.jpg",
-            quantity: 0,
-
-        },
-        {
-            name: "IPHONE 7S",
-            price: "50000",
-            id: "5",
-            type: "mob",
-            route: "mobilni",
-            img_path: "mobile2.jpg",
-            quantity: 0,
-
-
-        },
-        {
-            name: "SAMSUNG J5",
-            price: "20000",
-            id: "6",
-            type: "mob",
-            route: "mobilni",
-            img_path: "mobile3.jpg",
-            quantity: 0,
-
-        },
-        {
-            name: "SAMSUNG TV",
-            price: "90000",
-            id: "7",
-            type: "tv",
-            route: "televizori",
-            img_path: "tv1.jpg",
-            quantity: 0,
-
-        },
-        {
-            name: "SONY TV",
-            price: "70000",
-            id: "8",
-            type: "tv",
-            route: "televizori",
-            img_path: "tv3.jpg",
-            quantity: 0,
-
-        }
 
     ],
     shopingCart: localStorage.getItem("user") ? JSON.parse(localStorage.getItem('cart')) : []
@@ -116,6 +32,13 @@ export const DataProvider = (props) => {
         dispatch({
             type: "SET__USER",
             payload: user
+        })
+    }
+
+    function setProducts(prds) {
+        dispatch({
+            type: "SET__PRODUCTS",
+            payload: prds
         })
     }
 
@@ -148,8 +71,10 @@ export const DataProvider = (props) => {
         setCartToLs,
         setOrders,
         orderss: state.orderss,
+
         shopingCart: state.shopingCart,
-        emptyCart
+        emptyCart,
+        setProducts: setProducts
     }}>
         {props.children}
     </DataContext.Provider>
