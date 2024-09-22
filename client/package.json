@@ -37,12 +37,12 @@
       "last 1 safari version"
     ]
   },
-  "env": {
+   "env": {
     "NODE_OPTIONS": "--openssl-legacy-provider"
   },
   "devDependencies": {
     "axios": "^0.19.0",
     "uuid": "^3.3.3"
   },
-  "proxy": "https://web-shop-react-graphql.vercel.app"
+  "proxy": "https://web-shop-react-graphql-api-five.vercel.app/api"
 }
