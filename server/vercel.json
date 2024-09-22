@@ -11,6 +11,10 @@
       "src": "/api/graphql",
       "methods": ["GET", "POST", "OPTIONS"],
       "dest": "/api/index.js"
+    },
+    {
+      "src": "/",
+      "dest": "/api/index.js"
     }
   ]
 }

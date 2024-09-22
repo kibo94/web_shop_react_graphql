@@ -211,32 +211,44 @@ const resolvers = {
   },
 
 };
+app.get('/', (req, res) => {
+  res.send('Server is running');
+});
 
 const typeDefs2 = gql`
   type Query {
     hello: String
   }
 `;
+process.on('unhandledRejection', (err) => {
+  console.error('Unhandled Rejection:', err);
+});
 
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+});
 const resolvers2 = {
   Query: {
     hello: () => "world",
   },
 };
-// Required: Export the GraphQL.js schema object as "schema"
+const apolloServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+  introspection: true,  // Enable introspection for development
+  playground: true,     // Enable GraphQL Playground for development
+});
 
-// const server = http.createServer(app)
-const httpServer = http.createServer(app)
-const startApolloServer = async (app, httpSrv) => {
-  const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer: httpSrv })],
+
+// CORS middleware
+
+// Apply Apollo middleware to the Express app
+apolloServer.start().then(() => {
+  apolloServer.applyMiddleware({
+    app,
+    path: '/api/graphql',
   });
+});
 
-  await server.start();
-  server.applyMiddleware({ app });
-}
-startApolloServer(app, httpServer);
-// Disable body parsing, because Apollo Server handles that
-export default httpServer;
+// Export the express app for Vercel
+module.exports = app;
