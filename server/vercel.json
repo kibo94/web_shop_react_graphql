@@ -5,16 +5,16 @@
         "src": "client/package.json",  
         "use": "@vercel/static-build",
         "config": {
-          "distDir": "client/build"  
+          "distDir": "client/buildsss"  
         }
       },
       {
-        "src": "api/index.js",  
+        "src": "api/indexsss.js",  
         "use": "@vercel/node"
       }
     ],
     "routes": [
-      { "src": "/api/graphql", "dest": "/api/index.js" },
+      { "src": "/api/graphql", "dest": "/api/indexssss.js" },
       { "src": "/(.*)", "dest": "/client/build/index.html" }
     ]
   }
