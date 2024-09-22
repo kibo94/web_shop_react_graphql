@@ -2,7 +2,6 @@
   "name": "node-js-getting-started",
   "version": "0.3.0",
   "description": "A sample Node.js app using Express 4",
- 
   "main": "index.js",
   "scripts": {
     "start": "node api/index.js"
@@ -10,6 +9,7 @@
   "dependencies": {
     "apollo-server": "^2.19.0",
     "apollo-server-express": "^2.19.0",
+    "apollo-server-micro": "^3.13.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "ejs": "^2.5.6",

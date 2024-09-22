@@ -1,4 +1,4 @@
-const { ApolloServer, gql } = require('apollo-server-express');
+const { ApolloServer, gql } = require('apollo-server-micro');
 const express = require("express")
 const path = require('path')
 let env = require("dotenv");
