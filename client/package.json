@@ -37,6 +37,9 @@
       "last 1 safari version"
     ]
   },
+  "env": {
+    "NODE_OPTIONS": "--openssl-legacy-provider"
+  },
   "devDependencies": {
     "axios": "^0.19.0",
     "uuid": "^3.3.3"
