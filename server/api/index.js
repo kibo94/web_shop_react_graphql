@@ -335,7 +335,7 @@ const startServer = async () => {
 
 // Export the express app for Vercel
 const app = await startServer();
-app.use('/products', (req, res) => {
+app.use('/api/products', (req, res) => {
   res.json(products)
 })
 const PORT = process.env.PORT || 4000;
