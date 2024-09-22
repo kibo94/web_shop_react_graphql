@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from "react-router-dom"
-import ApolloClient from "apollo-boost"
+import ApolloClient, { InMemoryCache } from "apollo-boost"
 import { ApolloProvider } from "react-apollo"
 const client = new ApolloClient({
     uri: 'https://web-shop-react-graphql-api.vercel.app/api/graphql', // Your GraphQL API endpoint
