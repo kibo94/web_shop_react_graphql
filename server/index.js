@@ -7,6 +7,10 @@ let http = require("http")
 let cors = require("cors")
 
 app.use(cors())
+app.use(cors({
+  origin: '*', // or restrict to specific domains like 'http://localhost:3000'
+  methods: ['GET', 'POST']
+}));
 env.config();
 let port = 3000
 // var firebase = require('firebase');
@@ -216,10 +220,13 @@ const resolvers = {
 const server = new ApolloServer({
   typeDefs,
   resolvers,
+
 });
 server.applyMiddleware({
+
   path: '/graphql', // you should change this to whatever you want
   app,
+
 });
 
 
