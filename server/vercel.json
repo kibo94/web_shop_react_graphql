@@ -2,19 +2,20 @@
     "version": 2,
     "builds": [
       {
-        "src": "client/package.json", 
+        "src": "client/package.json",  
         "use": "@vercel/static-build",
         "config": {
           "distDir": "client/build"  
         }
       },
       {
-        "src": "index.js",  
+        "src": "api/index.js",  
         "use": "@vercel/node"
       }
     ],
     "routes": [
-      { "src": "/graphql", "dest": "/index.js" },
+      { "src": "/api/index", "dest": "/api/index.js" },
       { "src": "/(.*)", "dest": "/client/build/index.html" }
     ]
   }
+  
