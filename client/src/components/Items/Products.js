@@ -12,7 +12,7 @@ function Products({ type }) {
     }, [])
 
     async function fetchProducts() {
-        var prds = await axios.get("http://localhost:3000/products")
+        var prds = await axios.get("https://web-shop-react-graphql-api.vercel.app/api/products")
         setProducts(prds.data)
     }
 
