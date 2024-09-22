@@ -228,7 +228,8 @@ server.applyMiddleware({
   app,
   cors: {
     origin: 'https://web-shop-react-graphql-client-elyx1wk6k.vercel.app', // Replace with your frontend's URL in production
-    credentials: true
+    credentials: true,
+    methods: ['GET', 'POST'],
   }
 
 });
