@@ -1,0 +1,62 @@
+
+
+.Login{
+    background: #eee;
+    padding:6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.Login-logo{
+   
+    text-align: center;
+    margin:1rem;
+}
+.Login-logo i{
+    font-size:100px;
+    color: white;
+}
+
+.LoginForm{
+    padding: 1rem;
+    background: #333;
+    text-align: center;
+    width: 50%;
+    margin: 1rem auto;
+    border-radius: 6px;
+    
+}
+
+.log-in{
+    background: rgb(17, 82, 17);
+    border:none;
+    outline: none;
+    padding: 0.5rem 1.3rem;
+    margin-right: 1rem;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+
+.sing-in{
+    background: rgb(17, 53, 82);
+    border:none;
+    outline: none;
+    padding: 0.5rem 1.3rem;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+@media (max-width:768px){
+    .LoginForm{
+
+    width: 90%;
+    }
+    .Login{
+        padding: 3rem;
+    }
+
+}

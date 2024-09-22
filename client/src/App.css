@@ -1,0 +1,114 @@
+
+
+
+.Logo{
+  width: 70px;
+  height: 70px;
+  
+}
+
+
+/* Items common css */
+
+.ItemsWraper{
+ 
+  padding: 2rem 0rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  
+}
+.item{
+  border:1px solid #333;
+  padding: 1rem;
+  
+  width: 23%;
+  margin: 2% 1.33%;
+  border-radius: 6px;
+-webkit-box-shadow: 4px 3px 19px 9px rgba(0,0,0,0.75);
+-moz-box-shadow: 4px 3px 19px 9px rgba(0,0,0,0.75);
+box-shadow: 4px 3px 19px 9px rgba(0,0,0,0.75);
+
+}
+.item-image{
+  height: 200px;
+  border:2px solid gray;
+  margin-bottom:10px;
+  text-align: center;
+}
+.item-image img{
+  height: 100%;
+  width: 70%;
+  
+}
+
+.details{
+  font-weight: bold;
+  cursor: pointer;
+  margin:0;
+  margin-bottom:10px;
+}
+.details:hover{
+  text-decoration: underline;
+
+  
+
+}
+
+
+.item-price{
+  padding: 0.5erem 0 0.5rem 0.5rem;
+  color: black;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+.mybtn{
+  width: 100%;
+}
+
+@media (max-width:530px){
+
+  .item{
+    width: 95%;
+    margin: 1rem;
+  }
+
+  .ItemsWraper {
+   
+    padding: 2rem 1rem;
+  
+    flex-direction: column;
+    flex-wrap: nowrap;
+   
+}
+}
+
+.hiden{
+  overflow: hidden;
+}
+
+@media (min-width:531px) and (max-width:768px){
+
+  .item{
+    width: 40%;
+    margin: 1rem;
+  }
+
+  .item-image img{
+    height: 100%;
+    width: 100%;
+    
+
+}
+
+}
+
+
+
+
+.order-prd-img{
+  width: 100px;
+  height: 100px;
+}

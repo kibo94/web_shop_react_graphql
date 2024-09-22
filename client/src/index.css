@@ -1,0 +1,21 @@
+
+html{
+  scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+  
+      
+      font-family: 'Lato', sans-serif;
+    
+  }
+
+  .order{
+    background:rgb(201, 184, 154);
+    margin:10px;
+  }
+
+
+
+
+ 

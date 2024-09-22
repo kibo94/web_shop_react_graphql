@@ -1,0 +1,47 @@
+
+
+.Register{
+    padding: 5rem;
+    width: 50%;
+    margin:  0 auto;
+}
+.register{
+    background: rgb(17, 53, 82);
+    border:none;
+    outline: none;
+    padding: 0.5rem 1.3rem;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.RegisterForm{
+    padding: 1rem;
+    background: #333;
+    text-align: center;
+ 
+    margin: 1rem auto;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width:768px){
+    .RegisterForm{
+
+    width: 95%;
+    }
+
+    .Register{
+        padding: 0.3rem;
+        width: 93%;
+        
+    }
+    .register{
+
+    
+        margin:0.3rem;
+    }
+}

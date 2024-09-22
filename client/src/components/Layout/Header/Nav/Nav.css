@@ -1,0 +1,144 @@
+
+nav{
+    background: black;
+    align-items: center;
+    padding: 0.5rem 0;
+  
+}
+.bar{
+    display: none;
+    font-size: 26px;
+}
+.logo{
+    
+    color:white;
+    height: 30px;
+    width: 40px;
+    margin: 0.8rem;
+    
+   
+}
+
+.logo img{
+    height: 100%;
+    width: 100%;
+}
+
+nav ul{
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links{
+    margin: 0 0.2rem;
+    padding: 0.5rem 0.5rem;
+    text-transform: uppercase;
+   
+
+}
+
+.nav-links:not(.icons):hover{
+    background: #331;
+}
+
+.link-left{
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.link-left:hover{
+    color: white;
+ 
+}
+.link-right:hover{
+    color: white;
+ 
+
+}
+
+.link-right{
+    color: white;
+    font-weight: bold;
+}
+
+.link-right-icon{
+    color: white;
+    
+}
+
+
+
+
+.nav-links-ul-right{
+    position: absolute;
+    right: 5px;
+}
+.leng{
+    display: none;
+}
+
+
+@media (max-width:768px){
+    .nav-links-ul-left{
+        position: absolute;
+        
+        top: 70px;
+        background: rgb(17, 17, 17);
+        height: 0;
+        overflow: hidden;
+        
+        z-index: 3;
+        width: 100%;
+        flex-direction: column;
+        transition: 0.3s ease-in;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+   
+    }
+
+.nav-links-ul-left .nav-links{
+
+ margin: 2rem 0;
+ font-size: 30px;
+  
+}
+.nav-links-ul-left .nav-links:hover{
+
+    background: none;
+    color: wheat;
+
+     
+   }
+
+
+    .bar{
+        display: block;
+    }
+    .show{
+
+height: calc(100vh - 71.59px);
+    }
+    .leng{
+        display: block;
+    }
+    .total{
+        display: none;
+    }
+    
+}
+
+@media (min-width:630px) and (max-width:768px){
+    .nav-links-ul-left .nav-links{
+
+        margin: 0.1rem 0;
+        font-size: 30px;
+         
+       }
+
+
+}

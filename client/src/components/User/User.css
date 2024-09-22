@@ -1,0 +1,43 @@
+.History{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.History div{
+    width: 30%;
+    display: inline-block;
+    background: #eee;
+    padding: 1rem;
+    margin: 1rem;
+}
+.History li{
+
+    background: #333;
+    margin: 0.5rem 0;
+    color: white;
+}
+.user-info{
+    padding: 1rem 0 1rem 1rem;
+   
+    background: #eee;
+    text-align: center;
+}
+.user-info p{
+    font-weight: bold;
+    
+}
+.history{
+    padding: 1rem 0rem;
+    text-align: center;
+    margin: 0;
+
+}
+@media (max-width:766px){
+
+
+    .History div{
+        width: 90%;
+    }
+
+}

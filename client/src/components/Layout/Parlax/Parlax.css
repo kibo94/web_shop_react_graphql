@@ -1,0 +1,44 @@
+.Parlax{
+    height:calc(100vh - 72.59px);
+    background:url("../../../parlax.jpg");
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    position: relative
+}
+
+
+
+
+
+  .lets{
+    background: transparent;
+    border:2px solid white;
+    transition: ease-in 0.3s;
+    position: absolute;
+    padding: 0.5rem 2rem;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    color:white;
+    font-weight: bold;
+
+
+  }
+
+
+  .lets:hover{
+
+    background: wheat;
+    color: black;
+    text-decoration: none;
+      
+  }
+  
+  .lets:focus{
+  
+  outline: none;
+        
+    }

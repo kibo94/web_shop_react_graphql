@@ -1,0 +1,41 @@
+.Footer{
+    background: #333;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.Cpy{
+    color: black;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+
+.social-icons i{
+    margin: 0.5rem 1rem;
+    font-size: 1.8rem;
+    color: black;
+    
+
+}
+.social-icons i:hover{
+
+    text-shadow: 5px 5px 20px rgba(167, 150, 150, 1);
+}
+
+@media (max-width:768px){
+.Footer{
+  flex-direction: column;
+}
+
+.social-icons{
+    display: flex;
+    margin: 1rem 0;
+    flex-direction: column;
+}
+
+}
