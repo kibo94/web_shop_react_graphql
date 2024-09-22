@@ -1,11 +1,13 @@
-const { ApolloServer, gql } = require('apollo-server-express');
-const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core')
-const express = require("express")
-const path = require('path')
-let env = require("dotenv");
+import { ApolloServer, gql } from "apollo-server-express"
+
+import express from "express"
+// const path = require('path')
+
+
+import env from "dotenv";
 var app = express();
-let http = require("http")
-let cors = require("cors")
+import http from "http"
+import cors from "cors"
 app.use(express.json());
 app.use(cors())
 env.config();
@@ -237,14 +239,12 @@ const resolvers2 = {
 // Create an Apollo server instance
 const server = new ApolloServer({ typeDefs, resolvers });
 
-const app = express();
 
 // Apply Apollo middleware to Express
-async function startServer() {
-  await server.start();
-  server.applyMiddleware({ app, path: '/api/graphql' });
+await server.start();
+server.applyMiddleware({ app, path: '/api/graphql' });
 
-  module.exports = app;
-}
-
-startServer();
+// Export the app as a Vercel function
+export default (req, res) => {
+  app(req, res);
+};
