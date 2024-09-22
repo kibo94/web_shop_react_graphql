@@ -215,37 +215,18 @@ const resolvers = {
 };
 // Required: Export the GraphQL.js schema object as "schema"
 
-// Initialize the Apollo server
-const apolloServer = new ApolloServer({
-  typeDefs,
-  resolvers,
-  introspection: true,  // Enable introspection
-  playground: true,     // Enable GraphQL Playground
-});
+// const server = http.createServer(app)
+const httpServer = http.createServer(app)
+const startApolloServer = async (app, httpServer) => {
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+  });
 
-// Create a handler for the API
-const handler = apolloServer.createHandler({
-  path: '/api/graphql',
-});
-
-// Export the function to Vercel
-module.exports = async (req, res) => {
-  // Handle CORS preflight requests
-  if (req.method === 'OPTIONS') {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    res.status(200).end();
-    return;
-  }
-
-  // Handle GraphQL requests
-  return handler(req, res);
-};
-
-// Disable body parsing for Apollo Server
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+  await server.start();
+  server.applyMiddleware({ app });
+}
+startApolloServer(app, httpServer);
+// Disable body parsing, because Apollo Server handles that
+export default httpServer;
