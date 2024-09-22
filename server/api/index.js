@@ -311,7 +311,7 @@ const resolvers2 = {
   },
 };
 
-
+env.config()
 const startServer = async () => {
   const apolloServer = new ApolloServer({
     typeDefs,
@@ -338,4 +338,9 @@ const app = await startServer();
 app.use('/products', (req, res) => {
   res.json(products)
 })
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+
+});
+
 export default app;
