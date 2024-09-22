@@ -5,11 +5,10 @@ import express from "express"
 
 
 import env from "dotenv";
-var app = express();
 import http from "http"
 import cors from "cors"
 // app.use(express.json());
-app.use(cors())
+
 // env.config();
 
 let port = 3000
@@ -213,9 +212,7 @@ const resolvers = {
   },
 
 };
-app.get('/', (req, res) => {
-  res.send('Server is running');
-});
+
 
 const typeDefs2 = gql`
   type Query {
@@ -236,15 +233,28 @@ const resolvers2 = {
 };
 
 
-// Create an Apollo server instance
-const server = new ApolloServer({ typeDefs, resolvers });
+const startServer = async () => {
+  const apolloServer = new ApolloServer({
+    typeDefs,
+    resolvers,
+    introspection: true,
+    playground: true,
+  });
 
+  await apolloServer.start();
 
-// Apply Apollo middleware to Express
-await server.start();
-server.applyMiddleware({ app, path: '/api/graphql' });
+  const app = express();
+  app.use(cors());
 
-// Export the app as a Vercel function
-export default (req, res) => {
-  app(req, res);
+  apolloServer.applyMiddleware({
+    app,
+    path: '/api/graphql',
+  });
+
+  return app;
 };
+
+// Export the express app for Vercel
+const app = await startServer();
+app.use(cors())
+export default app;
