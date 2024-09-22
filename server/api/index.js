@@ -8,9 +8,9 @@ import env from "dotenv";
 var app = express();
 import http from "http"
 import cors from "cors"
-app.use(express.json());
+// app.use(express.json());
 app.use(cors())
-env.config();
+// env.config();
 
 let port = 3000
 // var firebase = require('firebase');
