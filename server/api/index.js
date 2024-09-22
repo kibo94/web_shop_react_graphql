@@ -216,16 +216,24 @@ const resolvers = {
 // Required: Export the GraphQL.js schema object as "schema"
 
 // const server = http.createServer(app)
-const startApolloServer = async (app, httpServer) => {
-  const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-  });
 
-  await server.start();
-  server.applyMiddleware({ app });
-}
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+
+});
+server.applyMiddleware({
+
+  path: '/api/graphql', // you should change this to whatever you want
+  app,
+  cors: {
+    origin: '*', // Replace with your frontend's URL in production
+    credentials: true,
+    methods: ['GET', 'POST'],
+  }
+
+});
+
 const isProduction = process.env.NODE_ENV === "production";
 
 if (isProduction) {
@@ -238,11 +246,11 @@ if (isProduction) {
       path.resolve(__dirname, "..", "client", "build", "index.html")
     ); // index is in /server/src so 2 folders up
   });
-  startApolloServer(app, httpServer);
+  app.listen(process.env.PORT || port);
 
 } else {
-
-  startApolloServer(app, httpServer);
+  console.log(process.env.PORT)
+  app.listen(process.env.PORT || port);
 }
 // server.listen(4300).then(({ url }) => {
 //   console.log(`🚀 Server ready at ${url}`);
