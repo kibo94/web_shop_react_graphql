@@ -217,41 +217,36 @@ const resolvers = {
 
 // const server = http.createServer(app)
 
-const server = new ApolloServer({
+// Initialize the Apollo server
+const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
-
+  introspection: true,
+  playground: true,
 });
-server.applyMiddleware({
 
-  path: '/api/graphql', // you should change this to whatever you want
-  app,
-  cors: {
-    origin: '*', // Replace with your frontend's URL in production
-    credentials: true,
-    methods: ['GET', 'POST'],
+// Create a handler for the GraphQL API
+const handler = apolloServer.createHandler({
+  path: '/api/graphql',
+});
+
+// Export the function to Vercel
+module.exports = async (req, res) => {
+  // Handle CORS preflight requests
+  if (req.method === 'OPTIONS') {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.status(200).end();
+    return;
   }
 
-});
+  return handler(req, res);
+};
 
-const isProduction = process.env.NODE_ENV === "production";
-
-if (isProduction) {
-  // Set static folder
-  app.use(express.static(path.join(__dirname, "../client/build")));
-
-  app.get("*", (req, res) => {
-
-    res.sendFile(
-      path.resolve(__dirname, "..", "client", "build", "index.html")
-    ); // index is in /server/src so 2 folders up
-  });
-  app.listen(process.env.PORT || port);
-
-} else {
-  console.log(process.env.PORT)
-  app.listen(process.env.PORT || port);
-}
-// server.listen(4300).then(({ url }) => {
-//   console.log(`🚀 Server ready at ${url}`);
-// });
+// Disable body parsing, because Apollo Server handles that
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
